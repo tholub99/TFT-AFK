@@ -1,6 +1,6 @@
 import time
 import numpy as np
-import pyautogui as gui
+import pydirectinput as pdi
 from PIL import Image, ImageGrab
 import pytesseract as pt
 
@@ -44,19 +44,19 @@ class StoreItem:
         self.name = ReadCapture(self.box.Capture())
     
     def Buy(self):
-        gui.click(self.coords.x, self.coords.y, clicks=2, interval=0.25)
+        pdi.click(self.coords.x, self.coords.y, duration=0.25)
 
 def ReadCapture(capture):
     return pt.image_to_string(capture, config='--psm 7').rstrip()
 
 def GetPixelColor(x, y):
-    return gui.screenshot().getpixel((x,y))
+    return pdi.screenshot().getpixel((x,y))
     
 def DoClick(coords):
-    gui.click(coords[0], coords[1], clicks=2, interval=0.25)
+    pdi.click(coords[0], coords[1], duration=0.25)
     
 def RefreshStore():
-    gui.hotkey("d")
+    pdi.hotkey("d")
     
 def LevelUp():
-    gui.hotkey("f")
+    pdi.hotkey("f")

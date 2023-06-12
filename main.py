@@ -47,6 +47,7 @@ def Initialize():
     WINDOW.ConnectAdd(AddChampToSelection)
     WINDOW.ConnectRemove(RemoveChampFromSelection)
     WINDOW.ConnectClear(ClearChampFromSelection)
+    WINDOW.ConnectReroll(Reroll)
     
     WINDOW.show()
     
@@ -66,7 +67,6 @@ def PerformBuyCycle():
     global WINDOW
     global STOP_ROUND_COLLECTION
     rerollCost = 2
-    rerollCoords = (500, 1380)
     
     if(STOP_ROUND_COLLECTION):
         return
@@ -85,7 +85,7 @@ def PerformBuyCycle():
         if(econ == None or econ < (econMin + rerollCost)):
             return
     
-        DoClick(rerollCoords)
+        Reroll()
         PerformBuyCycle()
         
     
@@ -154,6 +154,10 @@ def RemoveChampFromSelection():
 def ClearChampFromSelection():
     with lock:
         WINDOW.ClearChamps()
+        
+def Reroll():
+    rerollCoords = (500, 1380)
+    DoClick(rerollCoords)
 
 def Test():
     print('test')

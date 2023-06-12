@@ -28,6 +28,9 @@ class MainWindow(QtWidgets.QMainWindow):
     def ConnectClear(self, func):
         self.champClearButton.clicked.connect(func)
         
+    def ConnectReroll(self, func):
+        self.rerollButton.clicked.connect(func)
+        
     def SetChampList(self, baseList):
         self.champListWidget.addItems(baseList)
         
